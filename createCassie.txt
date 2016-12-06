@@ -1,0 +1,16 @@
+CREATE KEYSPACE android WITH REPLICATION = {'class:'SimpleStrategy','replication_factor':3};
+
+CREATE TABLE sonera (
+	block_id uuid, 
+	insertion_time timestamp, 
+	lat double, 
+	lon double,
+	gsm int,
+	cdma int,
+	evdo int,
+	lte int,
+	PRIMARY KEY (block_id, insertion_time)
+	)
+	WITH CLUSTERING ORDER BY (insertion_time DESC);
+	
+INSERT INTO sonera (block_id, insertion_time, lat, lon, gsm, cdma, evdo, lte)VALUES (cfd66ccc-d857-4e90-b1e5-df98a3d40cd6, dateof(now()), 62.241313, 25.759626, -89, -9, -200, -40);
