@@ -10,7 +10,7 @@ import java.util.Date;
 public class CassieConnector{
 	Session session = null;
 	public CassieConnector(){
-		this("127.0.0.1");
+		this("84.251.189.202");
 	}
 
 	public CassieConnector(String addr){
@@ -31,11 +31,11 @@ public class CassieConnector{
 	
 	}
 
-	public void insertCassie(String table, UUID uuid, double lat, double lon, int gsm, int cdma, int evdo, int lts){
+	public void insertCassie(String table, UUID uuid, double lat, double lon, int gsm, int cdma, int evdo, int lte){
 		    try{
 		        session.execute("INSERT INTO " + table +
 		                "(block_id, insertion_time, lat, lon, gsm, cdma, evdo, lts) VALUES (" + 
-		                uuid + ", dateof(now()), " + lat + ", " + lon + ", " + gsm + ", " + cdma + ", " + evdo + ", " + lts + ");" );
+		                uuid + ", dateof(now()), " + lat + ", " + lon + ", " + gsm + ", " + cdma + ", " + evdo + ", " + lte + ");" );
 		    }catch (NoHostAvailableException e){
 		        System.out.println(e.getErrors());
 		    }

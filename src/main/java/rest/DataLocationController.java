@@ -16,10 +16,10 @@ import static java.util.UUID.randomUUID;
 
 @RestController
 public class DataLocationController {
-
-    @RequestMapping("/signals")
+CassieConnector cc = new CassieConnector();
+    @RequestMapping("/test")
     public DataLocation json(@RequestParam(value="block_id", defaultValue="cfd66ccc-d857-4e90-b1e5-df98a3d40cd6") String block_id) {
-        CassieConnector cc = new CassieConnector();
+        
 	ResultSet result;
         result = cc.selectCassie("SELECT * FROM sonera");
 
@@ -33,13 +33,12 @@ public class DataLocationController {
 				row.getInt("gsm"),
 				row.getInt("cdma"),
 				row.getInt("evdo"),
-				row.getInt("lts"));
+				row.getInt("lte"));
     }
 
     @RequestMapping("/sonera")
     public DataLocationList getSonera(){
         DataLocationList sonera = new DataLocationList();
-	CassieConnector cc = new CassieConnector();
 	ResultSet result;
         result = cc.selectCassie("SELECT * FROM sonera");
 
@@ -51,7 +50,7 @@ public class DataLocationController {
                                 row.getInt("gsm"),
                                 row.getInt("cdma"),
                                 row.getInt("evdo"),
-                                row.getInt("lts"));
+                                row.getInt("lte"));
                 sonera.getSonera().add(dl);
         }
         return sonera;
@@ -60,11 +59,7 @@ public class DataLocationController {
 
     @RequestMapping(value = "/signals/sonera", method = RequestMethod.POST)
     public DataLocation postSonera(@RequestBody DataLocation dl){
-	//UUID uuid = randomUUID();
-        //Date date = new Date();
-        //ProviderData pd = new ProviderData(uuid, date, 62.241208, 25.758931, 89, 90, 91, 92);
-	CassieConnector cc = new CassieConnector();
-	cc.insertCassie("sonera", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), 		dl.getEvdo(), dl.getLts());
+	cc.insertCassie("sonera", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), 		dl.getEvdo(), dl.getLte());
 	return dl;
 	
     }
@@ -72,7 +67,7 @@ public class DataLocationController {
     @RequestMapping(value = "/signals/dna", method = RequestMethod.POST)
     public DataLocation postDna(@RequestBody DataLocation dl){
 	CassieConnector cc = new CassieConnector();
-	cc.insertCassie("dna", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), 		dl.getEvdo(), dl.getLts());
+	cc.insertCassie("dna", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), 		dl.getEvdo(), dl.getLte());
 	return dl;
 	
     }
@@ -80,7 +75,7 @@ public class DataLocationController {
     @RequestMapping(value = "/signals/saunalahti", method = RequestMethod.POST)
     public DataLocation postSaunalahti(@RequestBody DataLocation dl){
 	CassieConnector cc = new CassieConnector();
-	cc.insertCassie("saunalahti", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), dl.getEvdo(), dl.getLts());
+	cc.insertCassie("saunalahti", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), dl.getEvdo(), dl.getLte());
 	return dl;
 	
     }

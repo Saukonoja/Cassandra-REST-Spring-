@@ -13,13 +13,13 @@ public class DataLocation {
     public int gsm;
     public int cdma;
     public int evdo;
-    public int lts;
+    public int lte;
 
     public DataLocation(){
         super();
     }
 
-    public DataLocation(UUID block_id, Date insertion_time, double lat, double lon, int gsm, int cdma, int evdo, int lts) {
+    public DataLocation(UUID block_id, Date insertion_time, double lat, double lon, int gsm, int cdma, int evdo, int lte) {
         this.block_id = block_id;
 	this.insertion_time = insertion_time;
         this.lat = lat;
@@ -27,7 +27,7 @@ public class DataLocation {
         this.gsm = gsm;
         this.cdma = cdma;
         this.evdo = evdo;
-        this.lts = lts;
+        this.lte = lte;
     }
 
     public UUID getBlock_id() {
@@ -53,8 +53,8 @@ public class DataLocation {
     public int getEvdo() {
         return evdo;
     }
-    public int getLts() {
-        return lts;
+    public int getLte() {
+        return lte;
     }
 
 }
