@@ -5,7 +5,8 @@ import java.util.Date;
 
 
 public class DataLocation {
-
+    
+    //Attributes for a single row written to database
     public UUID block_id;
     public Date insertion_time;
     public double lat;
@@ -15,13 +16,17 @@ public class DataLocation {
     public int evdo;
     public int lte;
 
+    //default constructor. 
+    //This has to call to 'super();' otherwise Maven gives error in build 
     public DataLocation(){
         super();
     }
 
-    public DataLocation(UUID block_id, Date insertion_time, double lat, double lon, int gsm, int cdma, int evdo, int lte) {
+    //Constructor we actually use to create objects of this class
+    public DataLocation(UUID block_id, Date insertion_time, double lat, 
+        double lon, int gsm, int cdma, int evdo, int lte) {
         this.block_id = block_id;
-	this.insertion_time = insertion_time;
+	    this.insertion_time = insertion_time;
         this.lat = lat;
         this.lon = lon;
         this.gsm = gsm;
@@ -30,14 +35,16 @@ public class DataLocation {
         this.lte = lte;
     }
 
+    //Getters only. 
+    //We do not need setters 
+    //because the values of an object will not change in objects lifetime
+    //but we need to get the values of object to write them in database
     public UUID getBlock_id() {
         return block_id;
     }
-
     public Date getInsertion_time() {
-	return insertion_time;
+	   return insertion_time;
     }
-
     public double getLat() {
         return lat;
     }

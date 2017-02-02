@@ -31,11 +31,13 @@ public class CassieConnector{
 	
 	}
 
-	public void insertCassie(String table, UUID uuid, double lat, double lon, int gsm, int cdma, int evdo, int lte){
+	public void insertCassie(String table, UUID uuid, 
+		double lat, double lon, int gsm, int cdma, int evdo, int lte){
 		    try{
 		        session.execute("INSERT INTO " + table +
 		                "(block_id, insertion_time, lat, lon, gsm, cdma, evdo, lts) VALUES (" + 
-		                uuid + ", dateof(now()), " + lat + ", " + lon + ", " + gsm + ", " + cdma + ", " + evdo + ", " + lte + ");" );
+		                uuid + ", dateof(now()), " + lat + ", " + lon + ", " + gsm + ", " + 
+		                cdma + ", " + evdo + ", " + lte + ");" );
 		    }catch (NoHostAvailableException e){
 		        System.out.println(e.getErrors());
 		    }

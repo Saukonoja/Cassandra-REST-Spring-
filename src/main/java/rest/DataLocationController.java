@@ -59,7 +59,8 @@ CassieConnector cc = new CassieConnector();
 
     @RequestMapping(value = "/signals/sonera", method = RequestMethod.POST)
     public DataLocation postSonera(@RequestBody DataLocation dl){
-	cc.insertCassie("sonera", dl.getBlock_id(), dl.getLat(), dl.getLon(), dl.getGsm(), dl.getCdma(), 		dl.getEvdo(), dl.getLte());
+	cc.insertCassie("sonera", dl.getBlock_id(), dl.getLat(), dl.getLon(), 
+        dl.getGsm(), dl.getCdma(), dl.getEvdo(), dl.getLte());
 	return dl;
 	
     }
